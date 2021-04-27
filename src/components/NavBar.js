@@ -18,8 +18,8 @@ const NavBar = () => {
       <Paper style={ { height: '100vh' } } elevation={ 5 }>
         <Grid container direction='column'>
           <Typography variant='h1'>This is App</Typography>
-          <Button variant='container' color='primary'>This is first button</Button>
-          <Button variant='container' color='secondary'>This is second button</Button>
+          <Button variant='contained' color='primary'>This is first button</Button>
+          <Button variant='contained' color='secondary'>This is second button</Button>
           <Switch checked={ darkMode } onChange={ () => setDarkMode(!darkMode) }></Switch>
         </Grid>
       </Paper>
