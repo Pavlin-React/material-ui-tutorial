@@ -1,36 +1,31 @@
-import { Button, Typography, AppBar } from '@material-ui/core'
-import { Toolbar, IconButton } from '@material-ui/core'
-import MenuIcon from '@material-ui/icons/Menu';
-import { makeStyles } from '@material-ui/core/styles';
+import { Button, Typography, Grid, Paper } from '@material-ui/core'
+import { Toolbar, Switch } from '@material-ui/core'
+import { useState } from 'react'
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
-}));
 
-export default function ButtonAppBar() {
-  const classes = useStyles();
 
+
+const NavBar = () => {
+  let [darkMode, setDarkMode] = useState( false )
+  let theme = createMuiTheme( {
+    palette: {
+      type: darkMode ? 'dark' : 'light'
+    }
+  } )
   return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            News
-          </Typography>
-          <Button color="inherit">Login</Button>
-        </Toolbar>
-      </AppBar>
-    </div>
-  );
+    <ThemeProvider theme={ theme }>
+      <Paper style={ { height: '100vh' } } elevation={ 5 }>
+        <Grid container direction='column'>
+          <Typography variant='h1'>This is App</Typography>
+          <Button variant='container' color='primary'>This is first button</Button>
+          <Button variant='container' color='secondary'>This is second button</Button>
+          <Switch checked={ darkMode } onChange={ () => setDarkMode(!darkMode) }></Switch>
+        </Grid>
+      </Paper>
+    </ThemeProvider>
+  )
 }
+
+export default NavBar
+
