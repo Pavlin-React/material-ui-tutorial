@@ -1,31 +1,47 @@
-import { Button, Typography, Grid, Paper } from '@material-ui/core'
-import { Toolbar, Switch } from '@material-ui/core'
-import { useState } from 'react'
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
+}));
 
+export default function CenteredGrid() {
+  const classes = useStyles();
 
-
-const NavBar = () => {
-  let [darkMode, setDarkMode] = useState( false )
-  let theme = createMuiTheme( {
-    palette: {
-      type: darkMode ? 'dark' : 'light'
-    }
-  } )
   return (
-    <ThemeProvider theme={ theme }>
-      <Paper style={ { height: '100vh' } } elevation={ 5 }>
-        <Grid container direction='column'>
-          <Typography variant='h1'>This is App</Typography>
-          <Button variant='contained' color='primary'>This is first button</Button>
-          <Button variant='contained' color='secondary'>This is second button</Button>
-          <Switch checked={ darkMode } onChange={ () => setDarkMode(!darkMode) }></Switch>
+    <div className={classes.root}>
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <Paper className={classes.paper}>xs=12</Paper>
         </Grid>
-      </Paper>
-    </ThemeProvider>
-  )
+        <Grid item xs={6}>
+          <Paper className={classes.paper}>xs=6</Paper>
+        </Grid>
+        <Grid item xs={6}>
+          <Paper className={classes.paper}>xs=6</Paper>
+        </Grid>
+        <Grid item xs={3}>
+          <Paper className={classes.paper}>xs=3</Paper>
+        </Grid>
+        <Grid item xs={3}>
+          <Paper className={classes.paper}>xs=3</Paper>
+        </Grid>
+        <Grid item xs={3}>
+          <Paper className={classes.paper}>xs=3</Paper>
+        </Grid>
+        <Grid item xs={3}>
+          <Paper className={classes.paper}>xs=3</Paper>
+        </Grid>
+      </Grid>
+    </div>
+  );
 }
-
-export default NavBar
-
